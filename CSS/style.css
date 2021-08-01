@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 576px;
+  margin: 0 auto;
+}
+
+.image img {
+  width: 576px;
+  height: 576px;
+}
+
+.homepage {
+  position: relative;
+  display: block;
+}
+
+.homepage button {
+  position: absolute;
+  top: 70%;
+  left: 43%;
+}
+
+.gamescreen {
+  display: none;
+  position: relative;
+}
+
+.player {
+  background: url("../Images/sprite.png");
+  height: 72px;
+  width: 72px;
+  position: absolute;
+  z-index: 1;
+}
+
+.instruction {
+  display: none;
+  position: absolute;
+  background: url(/Images/Instruction\ scroll.png);
+  background-image: contain;
+  width: 390px;
+  height: 530px;
+  left: 14%;
+  z-index: 2;
+}
+
+.tile {
+  position: absolute;
+  background: url("../Images/0.jpg");
+  height: 72px;
+  width: 72px;
+}
+
+.tile.tile-0 {
+  background: url("../Images/0.jpg");
+}
+
+.tile.tile-1 {
+  background: url("../Images/1.jpg");
+}
+
+.tile.tile-2 {
+  background: url("../Images/2.jpg");
+}
+
+.tile.tile-3 {
+  background: url("../Images/3.jpg");
+}
+
+.tile.tile-4 {
+  background: url("../Images/4.jpg");
+}
+
+.tile.tile-5 {
+  background: url("../Images/5.jpg");
+}
+
+.tile.tile-6 {
+  background: url("../Images/6.jpg");
+}
+
+.tile.tile-7 {
+  background: url("../Images/7.jpg");
+}
+
+.tile.tile-8 {
+  background: url("../Images/8.jpg");
+}
+
+.tile.tile-9 {
+  background: url("../Images/9.jpg");
+}
+
+.tile.tile-10 {
+  background: url("../Images/10.jpg");
+}
+
+#circle1,
+#circle2,
+#circle3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -khtml-border-radius: 50px;
+  color: #fff;
+  background-image: url(/Images/minion2.png);
+  background-size: contain;
+  position: absolute;
+  z-index: 1;
+}
+
+.beam {
+  display: none;
+  background-image: url(/Images/beam.jpg);
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  z-index: 1;
+}
