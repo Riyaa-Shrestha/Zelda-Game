@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: PlayFont;
+  src: url(/Font/AGoblinAppears-o2aV.ttf);
+}
+
 .wrapper {
   width: 576px;
   margin: 0 auto;
@@ -22,7 +27,16 @@
 .homepage button {
   position: absolute;
   top: 70%;
-  left: 43%;
+  left: 33%;
+  width: 180px;
+  height: 50px;
+  z-index: 2;
+  font-family: "PlayFont";
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 
 .gamescreen {
@@ -38,11 +52,81 @@
   z-index: 1;
 }
 
+.coin1,
+.coin2,
+.coin3,
+.coin4,
+.coin5,
+.coin6,
+.coin7,
+.coin8,
+.coin9 {
+  background: url(/Images/coin.gif);
+  position: absolute;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  top: 0;
+  left: 0;
+}
+
+.coinScore img {
+  display: block;
+  position: absolute;
+  width: 42px;
+  height: 46px;
+  top: 517px;
+  left: 15px;
+  z-index: 2;
+}
+
+.score,
+.time {
+  position: absolute;
+  top: 522px;
+  left: 16%;
+  width: 180px;
+  height: 50px;
+  z-index: 2;
+  font-family: "PlayFont";
+  font-size: 34px;
+  color: #ffcb1f;
+}
+
+.time {
+  left: 428px;
+}
+
+.coinscore__body,
+.timer__body {
+  width: 142px;
+  height: 72px;
+  position: absolute;
+  z-index: 1;
+  background: black;
+  opacity: 0.4;
+  top: 502px;
+}
+
+.timer__body {
+  left: 434px;
+}
+
+.timer img {
+  display: block;
+  position: absolute;
+  width: 42px;
+  height: 46px;
+  top: 517px;
+  left: 523px;
+  z-index: 2;
+}
+
 .instruction {
   display: none;
   position: absolute;
   background: url(/Images/Instruction\ scroll.png);
-  background-image: contain;
   width: 390px;
   height: 530px;
   left: 14%;
@@ -110,10 +194,11 @@
   -webkit-border-radius: 50px;
   -khtml-border-radius: 50px;
   color: #fff;
-  background-image: url(/Images/minion2.png);
+  background-image: url(/Images/minion.png);
   background-size: contain;
   position: absolute;
   z-index: 1;
+  display: none;
 }
 
 .beam {

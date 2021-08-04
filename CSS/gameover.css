@@ -1,0 +1,48 @@
+@font-face {
+  font-family: PlayFont;
+  src: url(/Font/AGoblinAppears-o2aV.ttf);
+}
+
+.gameover {
+  background-image: url(/Images/gameover.png);
+  display: none;
+  position: absolute;
+  width: 390px;
+  height: 530px;
+  left: 14%;
+  z-index: 2;
+}
+
+.gameover img {
+  position: absolute;
+  top: 30%;
+  left: 26%;
+  width: 225px;
+  height: 235px;
+  z-index: 2;
+}
+
+.gameoverOverlay {
+  background: black;
+  opacity: 0.4;
+  position: absolute;
+  z-index: 1;
+  width: 576px;
+  height: 576px;
+  display: none;
+}
+
+.gameover button {
+  position: absolute;
+  top: 71%;
+  left: 27%;
+  width: 180px;
+  height: 50px;
+  z-index: 2;
+  font-family: "PlayFont";
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+}

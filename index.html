@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zelda</title>
     <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/gameover.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -15,10 +16,29 @@
         </div>
       </div>
 
+      <div class="loadingscreen"></div>
+
       <div class="gamescreen" id="gamescreen">
         <div class="instruction"></div>
+        <div class="coins"></div>
+        <div class="coinScore">
+          <img src="/Images/coincount.png" alt="Coin Count" />
+          <div class="score"></div>
+          <div class="coinscore__body"></div>
+        </div>
+        <div class="timer">
+          <img src="/Images/timer.gif" alt="Timer" />
+          <p class="time"></p>
+          <div class="timer__body"></div>
+        </div>
         <div class="player" id="player"></div>
         <div id="moveMe" class="circle"></div>
+
+        <div class="gameover">
+          <img src="/Images/loosing.gif" alt="You Loose" />
+          <button onclick="restartGame()">Play Again</button>
+        </div>
+        <div class="gameoverOverlay"></div>
       </div>
     </div>
   </body>
