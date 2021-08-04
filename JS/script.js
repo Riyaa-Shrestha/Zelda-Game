@@ -230,7 +230,7 @@ function GamePlay() {
             stop(id);
             console.log("id" + document.getElementById(id));
             document.getElementById(id).style.backgroundImage =
-              "url(/Images/explosion_sprite.gif)";
+              "url(../Images/explosion_sprite.gif)";
             setInterval(function () {
               document.getElementById(id).remove();
             }, 2000);
@@ -557,7 +557,7 @@ function GamePlay() {
             stop(id);
             console.log("id" + document.getElementById(id));
             document.getElementById(id).style.backgroundImage =
-              "url(/Images/explosion_sprite.gif)";
+              "url(../Images/explosion_sprite.gif)";
             setInterval(function () {
               document.getElementById(id).remove();
             }, 2000);

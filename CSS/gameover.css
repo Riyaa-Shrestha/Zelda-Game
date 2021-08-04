@@ -1,10 +1,10 @@
 @font-face {
   font-family: PlayFont;
-  src: url(/Font/AGoblinAppears-o2aV.ttf);
+  src: url(../Font/AGoblinAppears-o2aV.ttf);
 }
 
 .gameover {
-  background-image: url(/Images/gameover.png);
+  background-image: url(../Images/gameover.png);
   display: none;
   position: absolute;
   width: 390px;
