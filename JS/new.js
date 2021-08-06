@@ -9,6 +9,26 @@ function restartGame() {
 
 let gameWrapperEl = document.getElementById("gamescreen");
 
+// SOUND EFFECTS
+let bombExplode_sound = new sound("Audio/Bomb_explode.wav");
+let beam_sound = new sound("Audio/Beam.wav");
+let coin_sound = new sound("Audio/Coins.wav");
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function () {
+    this.sound.play();
+  };
+  this.stop = function () {
+    this.sound.pause();
+  };
+}
+
 // TILE
 const TILE_WIDTH = 72;
 const TILE_HEIGHT = 72;
@@ -257,7 +277,7 @@ function InitialCoinActions(coin) {
   coin.init();
   setInterval(function () {
     coin.checkPlayerCollision();
-  }, 1000);
+  }, 100);
 }
 
 function Coin(id, parent, coinPosition) {
@@ -284,24 +304,28 @@ function Coin(id, parent, coinPosition) {
         playerPosition.x > this.coinPosition.x * TILE_WIDTH + 50
       )
     ) {
-      console.log("Coin collected");
-      for (let i = 0; i < 1; i++) {
-        coinCollect(this.element);
-      }
+      this.collect();
+    }
+  };
+
+  this.collect = function () {
+    if (this.element != null) {
+      console.log("coin collected again");
+      coin_sound.play();
+      this.element.style.display = "none";
+      this.element.remove();
+      this.element = null;
+      updateCoinCount();
     }
   };
 }
 
-function coinCollect(coin) {
-  coin.style.display = "none";
-  coin.remove();
-  coinCount++;
-  updateCoinCount();
-}
-
 function updateCoinCount() {
-  //   coinCount += 1;
+  coinCount += 1;
   score.innerHTML = coinCount;
+  if (coinCount == 10) {
+    gameWon();
+  }
 }
 
 // BEAM
@@ -320,6 +344,7 @@ function beamListener() {
 function attack(e) {
   e.preventDefault();
   if (e.which == 90) {
+    beam_sound.play();
     const beam = document.createElement("div");
     beam.className = "beam";
     gameWrapperEl.appendChild(beam);
@@ -373,24 +398,44 @@ function EnemyInitialization() {
   let enemy1 = new Enemy(1, enemies, { x: 4, y: 5 });
   enemy1.init();
   setInterval(function () {
-    enemy1.updatePosition();
-    enemy1.checkPlayerCollision();
-    enemy1.checkBeamHit();
-  }, 500);
+    if (enemy1.exists()) {
+      enemy1.updatePosition();
+    }
+  }, 800);
+  setInterval(function () {
+    if (enemy1.exists()) {
+      enemy1.checkPlayerCollision();
+      enemy1.checkBeamHit();
+    }
+  }, 100);
+
   let enemy2 = new Enemy(2, enemies, { x: 4, y: 0 });
   enemy2.init();
   setInterval(function () {
-    enemy2.updatePosition();
-    enemy2.checkPlayerCollision();
-    enemy2.checkBeamHit();
+    if (enemy2.exists()) {
+      enemy2.updatePosition();
+    }
   }, 800);
+  setInterval(function () {
+    if (enemy2.exists()) {
+      enemy2.checkPlayerCollision();
+      enemy2.checkBeamHit();
+    }
+  }, 100);
+
   let enemy3 = new Enemy(3, enemies, { x: 2, y: 2 });
   enemy3.init();
   setInterval(function () {
-    enemy3.updatePosition();
-    enemy3.checkPlayerCollision();
-    enemy3.checkBeamHit();
-  }, 600);
+    if (enemy3.exists()) {
+      enemy3.updatePosition();
+    }
+  }, 800);
+  setInterval(function () {
+    if (enemy3.exists()) {
+      enemy3.checkPlayerCollision();
+      enemy3.checkBeamHit();
+    }
+  }, 100);
 }
 
 function Enemy(id, parent, initialPosition) {
@@ -399,6 +444,7 @@ function Enemy(id, parent, initialPosition) {
   this.enemyPosition = initialPosition;
   this.numberOfStepsRemaining = 3;
   this.forward = true;
+  let that = this;
 
   this.init = function () {
     this.element = document.createElement("div");
@@ -406,8 +452,12 @@ function Enemy(id, parent, initialPosition) {
     this.element.setAttribute("class", "enemy enemy-" + id);
     this.parent.appendChild(this.element);
 
-    this.element.style.left = this.enemyPosition.x * TILE_WIDTH + "px";
-    this.element.style.top = this.enemyPosition.y * TILE_WIDTH + "px";
+    this.element.style.left = this.enemyPosition.x * TILE_WIDTH + 22 + "px";
+    this.element.style.top = this.enemyPosition.y * TILE_WIDTH + 22 + "px";
+  };
+
+  this.exists = function () {
+    return this.element != null;
   };
 
   this.updatePosition = function () {
@@ -420,8 +470,8 @@ function Enemy(id, parent, initialPosition) {
     } else {
       this.enemyPosition.x = this.enemyPosition.x - 1;
     }
-    this.element.style.left = this.enemyPosition.x * TILE_WIDTH + "px";
-    this.element.style.top = this.enemyPosition.y * TILE_WIDTH + "px";
+    this.element.style.left = this.enemyPosition.x * TILE_WIDTH + 22 + "px";
+    this.element.style.top = this.enemyPosition.y * TILE_HEIGHT + 22 + "px";
 
     this.numberOfStepsRemaining -= 1;
   };
@@ -429,14 +479,16 @@ function Enemy(id, parent, initialPosition) {
   this.checkPlayerCollision = function () {
     if (
       !(
-        playerPosition.y + TILE_HEIGHT < this.enemyPosition.y * TILE_HEIGHT ||
-        playerPosition.y > this.enemyPosition.y * TILE_HEIGHT + 50 ||
-        playerPosition.x + TILE_WIDTH < this.enemyPosition.x * TILE_WIDTH ||
-        playerPosition.x > this.enemyPosition.x * TILE_WIDTH + 50
+        playerPosition.y + TILE_HEIGHT <
+          this.enemyPosition.y * TILE_HEIGHT + 22 ||
+        playerPosition.y > this.enemyPosition.y * TILE_HEIGHT + 22 ||
+        playerPosition.x + TILE_WIDTH <
+          this.enemyPosition.x * TILE_WIDTH + 22 ||
+        playerPosition.x > this.enemyPosition.x * TILE_WIDTH + 22
       )
     ) {
       console.log("Enemy collided");
-      Explosion(this.element);
+      this.explosionByPlayer(this.element);
     }
   };
 
@@ -444,33 +496,49 @@ function Enemy(id, parent, initialPosition) {
     if (
       !(
         beamPosition.y + TILE_HEIGHT < this.enemyPosition.y * TILE_HEIGHT ||
-        beamPosition.y > this.enemyPosition.y * TILE_HEIGHT + 50 ||
+        beamPosition.y > this.enemyPosition.y * TILE_HEIGHT ||
         beamPosition.x + TILE_WIDTH < this.enemyPosition.x * TILE_WIDTH ||
-        beamPosition.x > this.enemyPosition.x * TILE_WIDTH + 50
+        beamPosition.x > this.enemyPosition.x * TILE_WIDTH
       )
     ) {
       console.log("Enemy collided with Beam");
+      this.explosionByBeam();
     }
-    ExplosionByBeam(this.element);
   };
-}
 
-function Explosion(enemy) {
-  console.log("In explosion");
-  player.remove();
-  enemy.style.backgroundImage = "url(../Images/explosion_sprite.gif)";
-  setInterval(function () {
-    enemy.remove();
-    gameOver();
-  }, 500);
-}
+  this.explosionByBeam = function () {
+    if (that.element != null) {
+      console.log("Beam explosion");
+      bombExplode_sound.play();
+      that.element.style.backgroundImage =
+        "url(../Images/explosion_sprite.gif)";
+      let explosionInterval = setInterval(function () {
+        if (that.element != null) {
+          that.element.remove();
+          that.element = null;
+          clearInterval(explosionInterval);
+        }
+      }, 500);
+    }
+  };
 
-function ExplosionByBeam(enemy) {
-  console.log("Beam explosion");
-  enemy.style.backgroundImage = "url(../Images/explosion_sprite.gif)";
-  setInterval(function () {
-    enemy.remove();
-  }, 500);
+  this.explosionByPlayer = function () {
+    if (that.element != null) {
+      console.log("Beam explosion");
+      bombExplode_sound.play();
+      that.element.style.backgroundImage =
+        "url(../Images/explosion_sprite.gif)";
+      let explosionInterval = setInterval(function () {
+        if (that.element != null) {
+          that.element.remove();
+          player.remove();
+          that.element = null;
+          clearInterval(explosionInterval);
+        }
+      }, 500);
+      gameOver();
+    }
+  };
 }
 
 // COLLISION
@@ -485,6 +553,12 @@ function checkCollision(nextXIndex, nextYIndex) {
 function gameOver() {
   const gameover = document.getElementsByClassName("gameover")[0];
   gameover.style.display = "block";
+}
+
+// GAME-WON
+function gameWon() {
+  const gamewon = document.getElementsByClassName("gamewon")[0];
+  gamewon.style.display = "block";
 }
 
 //-----------------GAME-PLAY---------------------------

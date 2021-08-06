@@ -6,6 +6,7 @@
     <title>Zelda</title>
     <link rel="stylesheet" href="CSS/style.css" />
     <link rel="stylesheet" href="CSS/gameover.css" />
+    <link rel="stylesheet" href="CSS/gamewon.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -16,9 +17,6 @@
           <img src="Images/Homepage.jpg" alt="Homepage Image" />
         </div>
       </div>
-
-      <!-- LOADING SCREEN -->
-      <div class="loadingscreen"></div>
 
       <!-- GAME SCREEN -->
       <div class="gamescreen" id="gamescreen">
@@ -33,18 +31,18 @@
           <div class="coinscore__body"></div>
         </div>
 
-        <!-- timer -->
-        <div class="timer">
-          <img src="Images/timer.gif" alt="Timer" />
-          <p class="time"></p>
-          <div class="timer__body"></div>
-        </div>
-
         <!-- player -->
         <div class="player" id="player"></div>
 
         <!-- enemy -->
         <div class="enemies"></div>
+
+        <!-- gamewon -->
+        <div class="gamewon">
+          <img src="Images/wining2.gif" alt="You Loose" />
+          <button onclick="restartGame()">Play Again</button>
+        </div>
+        <div class="gameoverOverlay"></div>
 
         <!-- gameover -->
         <div class="gameover">

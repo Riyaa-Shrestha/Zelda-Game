@@ -73,8 +73,7 @@
   z-index: 2;
 }
 
-.score,
-.time {
+.score {
   position: absolute;
   top: 522px;
   left: 16%;
@@ -90,8 +89,7 @@
   left: 428px;
 }
 
-.coinscore__body,
-.timer__body {
+.coinscore__body {
   width: 142px;
   height: 72px;
   position: absolute;
@@ -99,20 +97,6 @@
   background: black;
   opacity: 0.4;
   top: 502px;
-}
-
-.timer__body {
-  left: 434px;
-}
-
-.timer img {
-  display: block;
-  position: absolute;
-  width: 42px;
-  height: 46px;
-  top: 517px;
-  left: 523px;
-  z-index: 2;
 }
 
 .instruction {

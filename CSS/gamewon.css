@@ -1,0 +1,38 @@
+@font-face {
+  font-family: PlayFont;
+  src: url(../Font/AGoblinAppears-o2aV.ttf);
+}
+
+.gamewon {
+  background-image: url(../Images/YouWon.png);
+  display: none;
+  position: absolute;
+  width: 390px;
+  height: 530px;
+  left: 14%;
+  z-index: 2;
+}
+
+.gamewon img {
+  position: absolute;
+  top: 28%;
+  left: 20%;
+  width: 237px;
+  height: 243px;
+  z-index: 2;
+}
+
+.gamewon button {
+  position: absolute;
+  top: 71%;
+  left: 27%;
+  width: 180px;
+  height: 50px;
+  z-index: 2;
+  font-family: "PlayFont";
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
