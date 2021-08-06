@@ -52,20 +52,12 @@
   z-index: 1;
 }
 
-.coin1,
-.coin2,
-.coin3,
-.coin4,
-.coin5,
-.coin6,
-.coin7,
-.coin8,
-.coin9 {
+.coin {
   background: url(../Images/coin.gif);
   position: absolute;
   z-index: 1;
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   background-size: cover;
   top: 0;
   left: 0;
@@ -184,21 +176,15 @@
   background: url("../Images/10.jpg");
 }
 
-#circle1,
-#circle2,
-#circle3 {
+.enemy {
   width: 50px;
   height: 50px;
-  border-radius: 50px;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -khtml-border-radius: 50px;
   color: #fff;
   background-image: url(../Images/minion.png);
   background-size: contain;
   position: absolute;
   z-index: 1;
-  display: none;
+  display: block;
 }
 
 .beam {
@@ -208,4 +194,8 @@
   width: 72px;
   height: 72px;
   z-index: 1;
+}
+
+.hide {
+  display: none;
 }

@@ -9,6 +9,7 @@
   </head>
   <body>
     <div class="wrapper">
+      <!-- HOMEPAGE -->
       <div class="homepage">
         <button class="startButton" onclick="startgame();">New Game</button>
         <div class="image">
@@ -16,24 +17,36 @@
         </div>
       </div>
 
+      <!-- LOADING SCREEN -->
       <div class="loadingscreen"></div>
 
+      <!-- GAME SCREEN -->
       <div class="gamescreen" id="gamescreen">
+        <!-- instruction -->
         <div class="instruction"></div>
+
+        <!-- coins -->
         <div class="coins"></div>
         <div class="coinScore">
           <img src="Images/coincount.png" alt="Coin Count" />
           <div class="score"></div>
           <div class="coinscore__body"></div>
         </div>
+
+        <!-- timer -->
         <div class="timer">
           <img src="Images/timer.gif" alt="Timer" />
           <p class="time"></p>
           <div class="timer__body"></div>
         </div>
-        <div class="player" id="player"></div>
-        <div id="moveMe" class="circle"></div>
 
+        <!-- player -->
+        <div class="player" id="player"></div>
+
+        <!-- enemy -->
+        <div class="enemies"></div>
+
+        <!-- gameover -->
         <div class="gameover">
           <img src="Images/loosing.gif" alt="You Loose" />
           <button onclick="restartGame()">Play Again</button>
@@ -42,5 +55,5 @@
       </div>
     </div>
   </body>
-  <script src="JS/script.js" type="text/javascript"></script>
+  <script src="JS/new.js" type="text/javascript"></script>
 </html>
